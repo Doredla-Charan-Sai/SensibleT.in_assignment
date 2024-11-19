@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const {open} = require('sqlite');
 const sqlite3 = require('sqlite3');
+const cors = require('cors');
 const db_path = path.join(__dirname,'database.db');
 let db = null;
 
@@ -23,6 +24,7 @@ const initializeDBAndServer = async ()=>{
 initializeDBAndServer();
 
 app.use(express.json());
+app.use(cors());
 
 // 1. POST /api/transactions/ - Create a new transaction
 app.post('/api/transactions/', async (req, res) => {
